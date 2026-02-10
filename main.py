@@ -7,9 +7,9 @@ def menu():
     while True:
         print("\n--- SISTEMA DE GESTIÓN DE INVENTARIOS ---")
         print("1. Añadir Producto")
-        print("2. Eliminar producto")
-        print("3. Actualizar producto")
-        print("4. Buscar producto")
+        print("2. Eliminar Producto")
+        print("3. Actualizar Producto")
+        print("4. Buscar Producto")
         print("5. Listar Inventario")
         print("6. Salir")
         
