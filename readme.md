@@ -1,7 +1,4 @@
-El sistema funciona con  una arquitectura modular basada en  la Programación Orientada a Objetos (POO):
-
-Modelo de Datos (Producto): Utiliza encapsulamiento para proteger los datos (ID, nombre, stock, precio) mediante atributos privados y decoradores @property.
-
-Lógica de Negocio (Inventario): Gestiona de objetos en memoria. Implementa algoritmos de validación (para evitar IDs duplicados), filtrado dinámico (búsquedas parciales) y manipución de estados (actualización y borrado).
-
-Interfaz de Usuario: Un bucle while en consola actúa como controlador, capturando las entradas del usuario y coordinando las llamadas a los servicios del inventario.
+Cada operación de escritura (añadir, eliminar, actualizar) llama a guardar_en_archivo(), lo que garantiza que los datos no se pierdan si el programa se cierra inesperadamente.
+El método cargar_desde_archivo verifica si el archivo existe usando os.path.exists y lo crea si es necesario, evitando errores en la primera ejecución.
+Los productos no se borran al cerrar el programa porque se guardan en inventario.txt. 
+El sistema valida que no repitas IDs y maneja errores si el archivo se daña o no tiene permisos. 

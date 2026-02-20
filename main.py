@@ -2,11 +2,12 @@ from modelos.producto import Producto
 from servicios.gestion_inventario import Inventario
 
 def menu():
+    # El inventario se carga automáticamente al instanciar la clase
     mi_inventario = Inventario()
     
     while True:
-        print("\n--- SISTEMA DE GESTIÓN DE INVENTARIOS ---")
-        print("1. Añadir Producto")
+        print("\n--- SISTEMA DE GESTIÓN ---")
+        print("1. Añadir producto")
         print("2. Eliminar Producto")
         print("3. Actualizar Producto")
         print("4. Buscar Producto")
@@ -23,34 +24,43 @@ def menu():
                 precio = float(input("Precio: "))
                 mi_inventario.añadir_producto(Producto(id_p, nombre, cant, precio))
             except ValueError:
-                print(" Error: Ingrese valores numéricos válidos para ID, cantidad y precio.")
+                print("Error: Los campos ID, Cantidad y Precio deben ser numéricos.")
 
         elif opcion == "2":
-            id_p = int(input("Ingrese ID del producto a eliminar: "))
-            mi_inventario.eliminar_producto(id_p)
+            try:
+                id_p = int(input("Ingrese ID del producto a eliminar: "))
+                mi_inventario.eliminar_producto(id_p)
+            except ValueError:
+                print("Error: El ID debe ser un número.")
 
         elif opcion == "3":
-            id_p = int(input("Ingrese ID del producto: "))
-            cant = input("Nueva cantidad (deje vacío para no cambiar): ")
-            prec = input("Nuevo precio (deje vacío para no cambiar): ")
-            
-            nueva_cant = int(cant) if cant else None
-            nuevo_prec = float(prec) if prec else None
-            mi_inventario.actualizar_producto(id_p, nueva_cant, nuevo_prec)
+            try:
+                id_p = int(input("Ingrese ID del producto: "))
+                cant = input("Nueva cantidad (vacío para omitir): ")
+                prec = input("Nuevo precio (vacío para omitir): ")
+                
+                n_cant = int(cant) if cant else None
+                n_prec = float(prec) if prec else None
+                mi_inventario.actualizar_producto(id_p, n_cant, n_prec)
+            except ValueError:
+                print("Error: Los valores de actualización deben ser numéricos.")
 
         elif opcion == "4":
             nombre = input("Nombre a buscar: ")
             resultados = mi_inventario.buscar_por_nombre(nombre)
-            for r in resultados: print(r)
+            if resultados:
+                for r in resultados: print(r)
+            else:
+                print("No se encontraron coincidencias.")
 
         elif opcion == "5":
             mi_inventario.mostrar_inventario()
 
         elif opcion == "6":
-            print("Salir del sistema...")
+            print("Cerrando sistema...")
             break
         else:
-            print(" Opción no válida.")
+            print("Opción no válida.")
 
 if __name__ == "__main__":
     menu()
