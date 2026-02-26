@@ -10,3 +10,5 @@
 21,tijera escolar,12,0.35
 22,cua universitario,45,1.2
 23,marcadores 12 ,45,1.0
+1,cartuchera,24,3.0
+2,plastilina,4,1.0
